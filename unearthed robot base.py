@@ -11,12 +11,17 @@ PROGRAM_NUMBER = 1
 async def main():
     robot = jones()
     robot.reset_angle()
-    front_motor = port.F
+    front_motor = port.A
     back_motor = port.D
-    
+
     if PROGRAM_NUMBER == 1:
-        await pickaxe(robot, front_motor)
-    
+        await test(robot)
+
+async def test(robot):
+    await robot.drive_forward(10)
+    await robot.turn_left(90)
+    await robot.drive_forward(10)
+
 async def pickaxe(robot, attachment_motor2):
     await robot.drive_forward(43)
     await motor.run_for_degrees(attachment_motor2, 70, 910)
@@ -39,15 +44,15 @@ class jones:
     def __init__(self):
         self.wheel_diameter = 5.5 # cm
         # driving motors
-        self.left_motor = port.A
+        self.left_motor = port.C
         self.right_motor = port.B
         self.motor_pair = motor_pair.PAIR_1
         motor_pair.pair(self.motor_pair, self.left_motor, self.right_motor)
 
-     def show_state(self):
+    def show_state(self):
         print("current angle: {} / angle goal: {}".format(self.get_yaw(), self.angle_goal))
 
-     # drive_forward tells the robot to drive in a
+    # drive_forward tells the robot to drive in a
     # straight line "distance" centimeters forwards.
     async def drive_forward(self, distance, speed = SPEED):
         distance_in_degrees = distance * (360.0 / (self.wheel_diameter * math.pi))
@@ -100,7 +105,7 @@ class jones:
         while self.get_yaw()>self.angle_goal:
             True
         motor_pair.stop(self.motor_pair)
-    
+
     def correction(self):
         correction = self.get_yaw() - self.angle_goal
         correction *= 5
