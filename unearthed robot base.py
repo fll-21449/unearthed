@@ -15,27 +15,30 @@ async def main():
     back_motor = port.D
 
     if PROGRAM_NUMBER == 1:
-        await test(robot)
+        await the_flyswatter(robot)
+    elif PROGRAM_NUMBER == 2:
+        await shipwreck(robot)
 
-async def test(robot):
-    await robot.drive_forward(10)
-    await robot.turn_left(90)
-    await robot.drive_forward(10)
-
-async def pickaxe(robot, attachment_motor2):
-    await robot.drive_forward(43)
-    await motor.run_for_degrees(attachment_motor2, 70, 910)
-    await wait_for_seconds(1)
-    await robot.turn_left(30)
-    await robot.drive_backward(17)
-    await robot.turn_left(30)
-    await motor_pair.move_for_degrees(robot.motor_pair, 300, 0, velocity = 1500)
-    await robot.drive_backward(13)
-    await robot.turn_left(10)
-    await robot.drive_backward(13)
-    await robot.turn_left(15)
-    await robot.drive_backward(33)
+async def the_flyswatter(robot): # back left wheel on the 2nd thick line
+    await robot.drive_forward(15)
     await robot.turn_left(50)
+    await robot.drive_forward(20)
+    await robot.turn_right(60)
+    await robot.drive_forward(35)
+    await robot.turn_left(102)
+    await robot.turn_right(90)
+    return
+    await robot.drive_forward(10)
+
+async def shipwreck(robot):
+    await robot.drive_backward(41)
+    await robot.drive_forward(10)
+    await robot.drive_backward(17)
+    await robot.drive_forward(16)
+    await robot.turn_left(10)
+    await robot.drive_forward(40)
+
+
 
 async def wait_for_seconds(s):
     await runloop.sleep_ms(s*1000)
