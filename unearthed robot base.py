@@ -24,18 +24,24 @@ async def the_flyswatter(robot): # back left wheel on the 2nd thick line
     await robot.turn_left(50)
     await robot.drive_forward(20)
     await robot.turn_right(60)
-    await robot.drive_forward(35)
+    await robot.drive_forward(37)
     await robot.turn_left(102)
     await robot.turn_right(90)
+    await robot.drive_backward(15)
+    await robot.turn_right(30)
+    await robot.drive_backward(8)
+    await robot.turn_right(20)
+    await robot.drive_backward(3)
     return
+    
     await robot.drive_forward(10)
 
-async def shipwreck(robot):
-    await robot.drive_backward(41)
-    await robot.drive_forward(10)
-    await robot.drive_backward(17)
-    await robot.drive_forward(16)
-    await robot.turn_left(10)
+async def shipwreck(robot): #
+    await robot.drive_backward(35)
+    await robot.drive_forward(3)
+    await robot.drive_backward(18)
+    await robot.drive_forward(6)
+    await robot.turn_right(5)
     await robot.drive_forward(40)
 
 
