@@ -22,19 +22,19 @@ async def main():
         await earthmover (robot,front_motor)
 
 
-async def the_flyswatter(robot): # back left wheel on the 2nd thick line
+async def the_flyswatter(robot): # yellow thing on the back left wheel on the 2nd thick line
     await robot.drive_forward(15)
     await robot.turn_left(50)
     await robot.drive_forward(20)
     await robot.turn_right(60)
-    await robot.drive_forward(37)
+    await robot.drive_forward(35)
     await robot.turn_left(102)
     await robot.turn_right(90)
-    await robot.drive_backward(15)
-    await robot.turn_right(30)
+    await robot.drive_backward(15) #drives straight back thing
+    await robot.turn_right(22)
     await robot.drive_backward(8)
     await robot.turn_right(20)
-    await robot.drive_backward(3)
+    await robot.drive_backward(8,speed=100)
     return
     
     await robot.drive_forward(10)
