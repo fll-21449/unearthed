@@ -50,7 +50,7 @@ async def shipwreck(robot): #
     await robot.turn_right(5)
     await robot.drive_forward(40)
 
-async def bulldozer(robot): 
+async def bulldozer(robot):
     await robot.drive_forward(45)
     await robot.turn_right(45)
     await robot.drive_forward(40)
