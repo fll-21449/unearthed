@@ -53,6 +53,12 @@ async def earthmover (robot,front_motor): #back right weel on 3rd bold line.
     await robot.turn_left(46)
     await robot.drive_forward(13)
     await motor.run_for_degrees(front_motor, 50, 100)
+    await robot.drive_backward(26)
+    await robot.turn_right(51)
+    await robot.drive_backward(12)
+    await motor.run_for_degrees(front_motor, -51, 100)
+    await robot.turn_left(12)
+    await robot.drive_backward(31)
 
 async def wait_for_seconds(s):
     await runloop.sleep_ms(s*1000)
