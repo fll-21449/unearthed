@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 1
+PROGRAM_NUMBER = 4
 
 async def main():
     robot = jones()
@@ -21,7 +21,7 @@ async def main():
     elif PROGRAM_NUMBER == 3:
         await earthmover(robot,front_motor)
     elif PROGRAM_NUMBER == 4:
-        await bulldozer(robot)
+        await bulldozer(robot, front_motor)
 
 
 async def the_flyswatter(robot): # yellow thing on the back left wheel on the 2nd thick line
@@ -50,10 +50,12 @@ async def shipwreck(robot): #
     await robot.turn_right(5)
     await robot.drive_forward(40)
 
-async def bulldozer(robot):
-    await robot.drive_forward(45)
-    await robot.turn_right(45)
-    await robot.drive_forward(40)
+async def bulldozer(robot, front_motor):
+    await robot.drive_forward(51)
+    await robot.turn_right(50)
+    await robot.drive_forward(30)
+    await motor.run_for_time(front_motor, 15000, 1110)
+    return
     await robot.drive_backward(9)
     await robot.turn_right(90)
     await robot.drive_forward(15)
