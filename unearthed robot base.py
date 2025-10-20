@@ -50,15 +50,16 @@ async def shipwreck(robot): #
     await robot.turn_right(5)
     await robot.drive_forward(40)
 
-async def bulldozer(robot):
-    await robot.drive_forward(45)
-    await robot.turn_right(45)
-    await robot.drive_forward(40)
+async def bulldozer(robot, front_motor):
+    await robot.drive_forward(51)
+    await robot.turn_right(50)
+    await robot.drive_forward(30)
+    await motor.run_for_time(front_motor, 15000, 1110)
+    return
     await robot.drive_backward(9)
     await robot.turn_right(90)
     await robot.drive_forward(15)
     await robot.turn_left(5)
-
 
 async def earthmover (robot,front_motor): #back right weel on 3rd bold line.
     await motor.run_for_time(front_motor,1500,-100)
