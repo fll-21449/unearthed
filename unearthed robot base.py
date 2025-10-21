@@ -6,7 +6,7 @@ import motor
 
 SPEED = 90
 
-PROGRAM_NUMBER = 3
+PROGRAM_NUMBER = 2
 
 async def main():
     robot = jones()
@@ -17,8 +17,10 @@ async def main():
     if PROGRAM_NUMBER == 1:
         await the_flyswatter(robot)
     elif PROGRAM_NUMBER == 2:
-        await shipwreck(robot)
+        await the_hammer_thing(robot,front_motor)
     elif PROGRAM_NUMBER == 3:
+        await shipwreck(robot)
+    elif PROGRAM_NUMBER == 4:
         await earthmover (robot,front_motor)
 
 
@@ -34,10 +36,25 @@ async def the_flyswatter(robot): # yellow thing on the back left wheel on the 2n
     await robot.turn_right(22)
     await robot.drive_backward(8)
     await robot.turn_right(20)
-    await robot.drive_backward(8,speed=100)
-    return
+    await robot.drive_backward(20,speed=100)
+    await robot.turn_right(80)
+    await robot.drive_forward(40)
 
-    await robot.drive_forward(10)
+async def the_hammer_thing (robot,front_motor):
+    await robot.drive_forward(20.5)
+    await motor.run_for_degrees(front_motor, -155, 1000)
+    await robot.drive_forward(14)#34.5
+    await motor.run_for_degrees(front_motor, 155, 1000)
+    await motor.run_for_degrees(front_motor, -155, 1000)
+    await motor.run_for_degrees(front_motor, 155, 1000)
+    await motor.run_for_degrees(front_motor, -155, 1000)
+    await motor.run_for_degrees(front_motor, 155, 1000)
+    await motor.run_for_degrees(front_motor, -155, 1000)
+    await robot.drive_forward(3.5)
+    await robot.turn_left(45)
+    await robot.drive_forward(31.5)
+
+
 
 async def shipwreck(robot): #
     await robot.drive_backward(35)
