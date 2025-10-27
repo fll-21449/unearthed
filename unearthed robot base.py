@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 2
+PROGRAM_NUMBER = 4
 
 async def main():
     robot = jones()
@@ -56,19 +56,28 @@ async def the_hammer_thing (robot,front_motor):
     await robot.turn_left(45)
     await robot.drive_forward(31.5)
 
-async def shipwreck(robot): #
-    await robot.drive_backward(41)
-    await robot.drive_forward(10)
-    await robot.drive_backward(17)
-    await robot.drive_forward(16)
-    await robot.turn_left(10)
+async def shipwreck(robot): 
+    await robot.drive_backward(39) 
+    await robot.drive_forward(6)
+    await robot.drive_backward(13)
+    await robot.drive_forward(2)
+    await robot.turn_right(2)
+    await robot.drive_forward(8)
+    await robot.turn_right(5)
+    await robot.drive_forward(40)
+
+    #await robot.drive_backward(41)
+    #await robot.drive_forward(10)
+    #await robot.drive_backward(17)
+    #await robot.drive_forward(16)
+    #await robot.turn_right(10)
 
     # await robot.drive_backward(35)
     # await robot.drive_forward(3)
     # await robot.drive_backward(18)
     # await robot.drive_forward(3)
     # await robot.turn_right(5)
-    await robot.drive_forward(43)
+    # await robot.drive_forward(43)
 
 async def bulldozer(robot, front_motor):
     await robot.drive_forward(51)
@@ -90,13 +99,15 @@ async def earthmover (robot,front_motor, back_motor): #back right weel on 3rd bo
     await motor.run_for_degrees(back_motor, 70, 300)
     await motor.run_for_degrees(back_motor, -80, 1100)
     await robot.drive_backward(26)
-    await robot.turn_right(51)
-    await robot.drive_backward(12)
-    await motor.run_for_degrees(front_motor, -51, 100)
-    await robot.turn_left(12)
-    await robot.drive_backward(25)
-    await robot.turn_right(50)
-    await robot.drive_backward(30)
+    await robot.turn_right(61)
+    await robot.drive_backward(58)
+    # await robot.turn_right(51)
+    # await robot.drive_backward(18)
+   # await motor.run_for_degrees(front_motor, -51, 100)
+   # await robot.turn_left(12)
+   # await robot.drive_backward(25)
+   # await robot.turn_right(50)
+   # await robot.drive_backward(30)
 
 async def wait_for_seconds(s):
     await runloop.sleep_ms(s*1000)
