@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 1
+PROGRAM_NUMBER = 2
 
 async def main():
     robot = jones()
@@ -52,13 +52,19 @@ async def the_hammer_thing (robot,front_motor):
     await motor.run_for_degrees(front_motor, -155, 1000)
     await motor.run_for_degrees(front_motor, 155, 1000)
     await motor.run_for_degrees(front_motor, -155, 1000)
-    await motor.run_for_degrees(front_motor, 155, 1000)
-    await motor.run_for_degrees(front_motor, -155, 1000)
     await robot.drive_forward(3.5)
-    await robot.turn_left(45)
-    await robot.drive_forward(31.5)
+    await robot.turn_left(35)
+    await robot.drive_forward(42.5)
+    await robot.turn_left(55)
+    await robot.drive_forward(50)
+    await motor.run_for_degrees(front_motor, 155, 1000)
+    await robot.turn_left(10)
+    await robot.drive_forward(5.5)
+    await motor.run_for_degrees(front_motor, -155, 1000)
 
-async def shipwreck(robot): #
+
+
+async def shipwreck(robot): 
     await robot.drive_backward(41)
     await robot.drive_forward(10)
     await robot.drive_backward(17)
