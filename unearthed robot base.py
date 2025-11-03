@@ -6,13 +6,16 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 4
+PROGRAM_NUMBER = 2
 
 async def main():
     robot = jones()
     robot.reset_angle()
     front_motor = port.A
     back_motor = port.D
+
+    #await hammer_down(robot, front_motor)
+    #return
 
     if PROGRAM_NUMBER == 1:
         await the_flyswatter(robot, back_motor)
@@ -44,6 +47,18 @@ async def the_flyswatter(robot, back_motor): # yellow thing on the back left whe
     await motor.run_for_degrees(back_motor, 360, 1000)
     await robot.drive_forward(40)
 
+async def hammer_down(robot, front_motor):
+    await motor.run_for_degrees(front_motor, -155, 1000)
+    await wait_for_seconds(1)
+    await motor.run_for_degrees(front_motor, 155, 1000)
+    await motor.run_for_degrees(front_motor, -155, 1000)
+    await motor.run_for_degrees(front_motor, 155, 1000)
+    await motor.run_for_degrees(front_motor, -155, 1000)
+    await wait_for_seconds(1)
+    await motor.run_for_degrees(front_motor, 155, 1000)
+    await wait_for_seconds(1)
+    await motor.run_for_time(front_motor, 500, 150)
+
 async def the_hammer_thing (robot,front_motor):
     await robot.drive_forward(20.5)
     await motor.run_for_degrees(front_motor, -155, 1000)
@@ -52,15 +67,25 @@ async def the_hammer_thing (robot,front_motor):
     await motor.run_for_degrees(front_motor, -155, 1000)
     await motor.run_for_degrees(front_motor, 155, 1000)
     await motor.run_for_degrees(front_motor, -155, 1000)
+    #await motor.run_for_degrees(front_motor, 155, 1000)
+    #await motor.run_for_degrees(front_motor, -155, 1000)
     await robot.drive_forward(3.5)
     await robot.turn_left(35)
     await robot.drive_forward(42.5)
     await robot.turn_left(55)
     await robot.drive_forward(50)
-    await motor.run_for_degrees(front_motor, 155, 1000)
+    await motor.run_for_time(front_motor, 1000, 300)
     await robot.turn_left(10)
-    await robot.drive_forward(5.5)
-    await motor.run_for_degrees(front_motor, -155, 1000)
+    await robot.drive_forward(10)
+    await robot.turn_right(13)
+    await motor.run_for_degrees(front_motor, -140, 950)
+    await robot.drive_backward(5)
+    await robot.drive_forward(5)
+    await robot.turn_left(10)
+    await robot.drive_forward(60)
+    await robot.turn_left(70)
+    await robot.drive_forward(60, speed = 100)
+
 
 async def shipwreck(robot): 
     await robot.drive_backward(39) 
