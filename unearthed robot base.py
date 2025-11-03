@@ -19,7 +19,7 @@ async def main():
     elif PROGRAM_NUMBER == 2:
         await the_hammer_thing(robot,front_motor)
     elif PROGRAM_NUMBER == 3:
-        await shipwreck(robot)
+        await shipwreck(robot, back_motor)
     elif PROGRAM_NUMBER == 4:
         await earthmover(robot,front_motor, back_motor)
     elif PROGRAM_NUMBER == 5:
@@ -62,10 +62,11 @@ async def the_hammer_thing (robot,front_motor):
     await robot.drive_forward(5.5)
     await motor.run_for_degrees(front_motor, -155, 1000)
 
-async def shipwreck(robot): 
+async def shipwreck(robot, back_motor): 
     await robot.drive_backward(39) 
-    await robot.drive_forward(2) # was 6
+    await robot.drive_forward(2) 
     await robot.drive_backward(13)
+    await motor.run_for_degrees(back_motor, 100, 500)
     await robot.drive_forward(2)
     await robot.turn_right(2)
     await robot.drive_forward(8)
