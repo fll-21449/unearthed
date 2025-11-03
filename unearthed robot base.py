@@ -14,9 +14,6 @@ async def main():
     front_motor = port.A
     back_motor = port.D
 
-    #await hammer_down(robot, front_motor)
-    #return
-
     if PROGRAM_NUMBER == 1:
         await the_flyswatter(robot, back_motor)
     elif PROGRAM_NUMBER == 2:
@@ -46,18 +43,6 @@ async def the_flyswatter(robot, back_motor): # yellow thing on the back left whe
     await robot.turn_right(80)
     await motor.run_for_degrees(back_motor, 360, 1000)
     await robot.drive_forward(40)
-
-async def hammer_down(robot, front_motor):
-    await motor.run_for_degrees(front_motor, -155, 1000)
-    await wait_for_seconds(1)
-    await motor.run_for_degrees(front_motor, 155, 1000)
-    await motor.run_for_degrees(front_motor, -155, 1000)
-    await motor.run_for_degrees(front_motor, 155, 1000)
-    await motor.run_for_degrees(front_motor, -155, 1000)
-    await wait_for_seconds(1)
-    await motor.run_for_degrees(front_motor, 155, 1000)
-    await wait_for_seconds(1)
-    await motor.run_for_time(front_motor, 500, 150)
 
 async def the_hammer_thing (robot,front_motor):
     await robot.drive_forward(20.5)
