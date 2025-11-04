@@ -1,4 +1,8 @@
 #!/bin/sh
+#/ Usage: ./ff.sh
+#/
+#/ Update programs-$host to match programs, but only if programs has all of the
+#/ changes from programs-$host.
 
 set -e
 set -o nounset

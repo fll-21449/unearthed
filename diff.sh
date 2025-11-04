@@ -1,5 +1,8 @@
 #!/bin/bash
-#/ Usage: ./diff.sh [spike|mindstorms]
+#/ Usage: ./diff.sh
+#/
+#/ Compare the latest version commited to the programs-$host branch with
+#/ what's in the app.
 
 set -e
 set -o nounset

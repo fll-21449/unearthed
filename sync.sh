@@ -1,5 +1,8 @@
 #!/bin/bash
 #/ Usage: ./sync.sh [-m MESSAGE]
+#/
+#/ Make a copy of the current programs on the 'programs-$host' branch and push
+#/ to github.
 
 set -e
 set -o nounset
