@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 5
+PROGRAM_NUMBER = 3
 
 async def main():
     robot = jones()
@@ -76,8 +76,8 @@ async def the_hammer_thing (robot,front_motor):
 
 
 async def shipwreck(robot, back_motor): 
-    await robot.drive_backward(39) 
-    await robot.drive_forward(2) 
+    await robot.drive_backward(40) 
+    await robot.drive_forward(5) 
     await robot.drive_backward(13)
     await motor.run_for_degrees(back_motor, 100, 500)
     await robot.drive_forward(2)
