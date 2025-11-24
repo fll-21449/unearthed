@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 2
+PROGRAM_NUMBER = 1
 
 async def main():
     robot = jones()
@@ -45,6 +45,7 @@ async def the_flyswatter(robot, back_motor): # yellow thing on the back left whe
     await robot.drive_backward(18.5,speed=100)
     await robot.turn_right(80)
     await motor.run_for_degrees(back_motor, 360, 1000)
+    return
     await robot.drive_forward(40)
 
 async def the_hammer_thing (robot,front_motor):
@@ -61,13 +62,19 @@ async def the_hammer_thing (robot,front_motor):
     await robot.turn_left(35)
     await robot.drive_forward(42.5)
     await robot.turn_left(55)
-    await robot.drive_forward(52)
+    await robot.drive_forward(14.5)
+    await robot.turn_right(45)
+    await robot.simple_drive_backward(14)
+    await robot.drive_forward(12)
+    await robot.turn_left(45)
+    await robot.drive_forward(37.5)
     await motor.run_for_time(front_motor, 1000, 300)
     await robot.turn_left(10)
     await robot.drive_forward(10)
     await robot.turn_right(13)
     await motor.run_for_degrees(front_motor, -140, 950)
     await robot.drive_backward(5)
+    await motor.run_for_time(front_motor, 500, -950)
     await robot.drive_forward(5)
     await robot.turn_left(10)
     await robot.drive_forward(60)
@@ -150,6 +157,10 @@ class jones:
     def show_state(self):
         print("current angle: {} / angle goal: {}".format(self.get_yaw(), self.angle_goal))
 
+    async def simple_drive_backward(self, distance, speed = SPEED):
+        distance_in_degrees = int(distance * (360.0 / (self.wheel_diameter * math.pi)))
+        await motor_pair.move_for_degrees(self.motor_pair, -distance_in_degrees, 0, velocity = speed*10)
+ 
     # drive_forward tells the robot to drive in a
     # straight line "distance" centimeters forwards.
     async def drive_forward(self, distance, speed = SPEED):
