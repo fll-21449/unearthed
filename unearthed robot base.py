@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 5
+PROGRAM_NUMBER = 4
 
 async def main():
     robot = jones()
@@ -118,15 +118,15 @@ async def bulldozer(robot, front_motor):
 
 async def earthmover (robot,front_motor, back_motor): #back right weel on 3rd bold line.
     await motor.run_for_time(front_motor,1500,-100)
-    await robot.drive_forward(64)
+    await robot.drive_forward(63.4)
     await robot.turn_left(46)
     await robot.drive_forward(13)
     await motor.run_for_degrees(front_motor, 50, 100)
     await motor.run_for_degrees(back_motor, 70, 300)
     await motor.run_for_degrees(back_motor, -80, 1100)
-    await robot.drive_backward(26)
-    await robot.turn_right(61)
-    await robot.drive_backward(58)
+    await robot.drive_backward(8.5)
+    await robot.turn_right(45)
+    await robot.drive_backward(70)
     # await robot.turn_right(51)
     # await robot.drive_backward(18)
    # await motor.run_for_degrees(front_motor, -51, 100)
