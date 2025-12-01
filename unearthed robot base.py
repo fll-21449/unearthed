@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 0
+PROGRAM_NUMBER = 2
 
 async def main():
     robot = jones()
@@ -45,8 +45,10 @@ async def the_flyswatter(robot, back_motor): # yellow thing on the back left whe
     await robot.drive_backward(18.5,speed=100)
     await robot.turn_right(80)
     await motor.run_for_degrees(back_motor, 360, 1000)
-    return
-    await robot.drive_forward(40)
+    #await robot.turn_left(60)
+    await robot.drive_forward(30)
+    await robot.turn_left(45)
+    await robot.drive_forward(35)
 
 async def the_hammer_thing (robot,front_motor):
     await robot.drive_forward(20.5)
@@ -62,7 +64,7 @@ async def the_hammer_thing (robot,front_motor):
     await robot.turn_left(35)
     await robot.drive_forward(42.5)
     await robot.turn_left(55)
-    await robot.drive_forward(14.5)
+    await robot.drive_forward(13.8)
     await robot.turn_right(45)
     await robot.simple_drive_backward(14)
     await robot.drive_forward(12)
