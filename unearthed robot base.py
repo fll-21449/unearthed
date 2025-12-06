@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 2
+PROGRAM_NUMBER = 1
 
 async def main():
     robot = jones()
@@ -17,14 +17,16 @@ async def main():
     if PROGRAM_NUMBER == 1:
         await the_flyswatter(robot, back_motor)
     elif PROGRAM_NUMBER == 2:
-        await the_hammer_thing(robot,front_motor)
+        await millstone(robot, front_motor)
     elif PROGRAM_NUMBER == 3:
-        await shipwreck(robot, back_motor)
+        await the_hammer_thing(robot,front_motor)
     elif PROGRAM_NUMBER == 4:
-        await earthmover(robot,front_motor, back_motor)
+        await shipwreck(robot, back_motor)
     elif PROGRAM_NUMBER == 5:
-        await delivery(robot)
+        await earthmover(robot,front_motor, back_motor)
     elif PROGRAM_NUMBER == 6:
+        await delivery(robot)
+    elif PROGRAM_NUMBER == 7:
         await bulldozer(robot)
 
 
@@ -83,6 +85,17 @@ async def the_hammer_thing (robot,front_motor):
     await robot.turn_left(70)
     await robot.drive_forward(60, speed = 100)
 
+async def millstone(robot, front_motor):
+    await robot.drive_forward(17.5)
+    await robot.turn_right(45)
+    await robot.drive_forward(29)
+    await robot.turn_left(45)
+    await robot.drive_forward(24)
+    await motor.run_for_degrees(front_motor, -20, 500)
+    await robot.drive_forward(10)
+    await motor.run_for_degrees(front_motor, 150, 1000)
+    
+
 
 async def shipwreck(robot, back_motor): 
     await robot.drive_backward(40) 
@@ -91,15 +104,16 @@ async def shipwreck(robot, back_motor):
     await motor.run_for_degrees(back_motor, 100, 500)
     await robot.drive_forward(2)
     await robot.turn_right(2)
-    await robot.drive_forward(8)
+    await robot.drive_forward(11)
     await robot.turn_right(5)
-    await robot.drive_forward(40, speed=100)
+    await robot.drive_forward(37, speed=100)
 
 async def delivery(robot):
     await robot.drive_backward(21)
     await robot.turn_right(30)
     await robot.drive_backward(33)
     await robot.drive_forward(7)
+    await robot.turn_left(3)
 
     #await robot.drive_backward(41)
     #await robot.drive_forward(10)
