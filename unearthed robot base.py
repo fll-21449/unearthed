@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 1
+PROGRAM_NUMBER = 6
 
 async def main():
     robot = jones()
@@ -17,7 +17,9 @@ async def main():
     if PROGRAM_NUMBER == 1:
         await the_flyswatter(robot, back_motor)
     elif PROGRAM_NUMBER == 2:
-        await millstone(robot, front_motor)
+        #await millstone(robot, front_motor)
+        #await gold_digger(robot, back_motor)
+        await flyswater2(robot,front_motor)
     elif PROGRAM_NUMBER == 3:
         await the_hammer_thing(robot,front_motor)
     elif PROGRAM_NUMBER == 4:
@@ -96,6 +98,21 @@ async def millstone(robot, front_motor):
     await robot.drive_forward(10)
     await motor.run_for_degrees(front_motor, 150, 1000)
     
+async def gold_digger(robot, back_motor):
+    await robot.drive_forward(50)
+    await motor.run_for_degrees(back_motor, 25, 700)
+    for i in range(6):
+        await robot.simple_drive_backward(4)
+        await robot.simple_drive_forward(4)
+
+
+async def flyswater2(robot,front_motor):
+    await motor.run_for_time(front_motor, 1000, 950)
+
+   
+
+
+
 
 
 async def shipwreck(robot, back_motor): 
@@ -103,8 +120,6 @@ async def shipwreck(robot, back_motor):
     await robot.drive_forward(5) 
     await robot.drive_backward(13)
     await motor.run_for_degrees(back_motor, 100, 500)
-    await robot.drive_forward()
-    await robot.drive_backward()
     await robot.drive_forward(2)
     await robot.turn_right(2)
     await robot.drive_forward(11)
@@ -114,9 +129,8 @@ async def shipwreck(robot, back_motor):
 async def delivery(robot):
     await robot.drive_backward(21)
     await robot.turn_right(30)
-    await robot.drive_backward(33)
+    await robot.drive_backward(30)
     await robot.drive_forward(7)
-    await robot.turn_left(3)
 
     #await robot.drive_backward(41)
     #await robot.drive_forward(10)
@@ -180,6 +194,14 @@ class jones:
         distance_in_degrees = int(distance * (360.0 / (self.wheel_diameter * math.pi)))
         await motor_pair.move_for_degrees(self.motor_pair, -distance_in_degrees, 0, velocity = speed*10)
  
+    async def simple_drive_forward(self, distance, speed = SPEED):
+        distance_in_degrees = int(distance * (360.0 / (self.wheel_diameter * math.pi)))
+        await motor_pair.move_for_degrees(self.motor_pair, distance_in_degrees, 0, velocity = speed*10)
+
+
+
+
+
     # drive_forward tells the robot to drive in a
     # straight line "distance" centimeters forwards.
     async def drive_forward(self, distance, speed = SPEED):
