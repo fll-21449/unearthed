@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 6
+PROGRAM_NUMBER = 3
 
 async def main():
     robot = jones()
@@ -84,9 +84,9 @@ async def the_hammer_thing (robot,front_motor):
     await motor.run_for_time(front_motor, 500, -950)
     await robot.drive_forward(5)
     await robot.turn_left(10)
-    await robot.drive_forward(60)
+    await robot.drive_forward(53, speed=105)
     await robot.turn_left(70)
-    await robot.drive_forward(60, speed = 100)
+    await robot.simple_drive_forward(58, speed = 105)
 
 async def millstone(robot, front_motor):
     await robot.drive_forward(17.5)
