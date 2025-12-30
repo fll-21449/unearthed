@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 5
+PROGRAM_NUMBER = 2
 
 async def main():
     robot = jones()
@@ -18,10 +18,10 @@ async def main():
         await the_flyswatter(robot, back_motor)
     elif PROGRAM_NUMBER == 2:
         #await millstone(robot, front_motor)
-        #await gold_digger(robot, back_motor)
-        await flyswater2(robot,front_motor)
+        await gold_digger(robot, back_motor)
+        #await flyswater2(robot,front_motor)
     elif PROGRAM_NUMBER == 3:
-        await the_hammer_thing(robot,front_motor)
+        await the_hammer_thing(robot,front_motor,back_motor)
     elif PROGRAM_NUMBER == 4:
         await shipwreck(robot, back_motor)
     elif PROGRAM_NUMBER == 5:
@@ -60,7 +60,7 @@ async def the_flyswatter(robot, back_motor): # yellow thing on the back left whe
     await robot.turn_left(45)
     await robot.drive_forward(35)
 
-async def the_hammer_thing (robot,front_motor):
+async def the_hammer_thing (robot,front_motor,back_motor):
     await robot.drive_forward(20.5)
     await motor.run_for_degrees(front_motor, -155, 1000)
     await robot.drive_forward(14)#34.5
@@ -80,6 +80,7 @@ async def the_hammer_thing (robot,front_motor):
     await robot.drive_forward(12)
     await robot.turn_left(45)
     await robot.drive_forward(37.5)
+    await robot.turn_left(4)# added to fix getting stuck
     await motor.run_for_time(front_motor, 1000, 300)
     await robot.turn_left(10)
     await robot.drive_forward(10)
@@ -89,8 +90,13 @@ async def the_hammer_thing (robot,front_motor):
     await motor.run_for_time(front_motor, 500, -950)
     await robot.drive_forward(5)
     await robot.turn_left(10)
-    await robot.drive_forward(53, speed=105)
-    await robot.turn_left(70)
+    await robot.drive_forward(17, speed=105)
+    await motor.run_for_degrees(back_motor, 105, 1100)
+    await motor.run_for_degrees(back_motor, -30, 1100)
+    await robot.turn_left(10)
+    await robot.turn_right(10)
+    await robot.drive_forward(33, speed=105)
+    await robot.turn_left(90)
     await robot.simple_drive_forward(58, speed = 105)
 
 async def millstone(robot, front_motor):
@@ -104,11 +110,12 @@ async def millstone(robot, front_motor):
     await motor.run_for_degrees(front_motor, 150, 1000)
     
 async def gold_digger(robot, back_motor):
-    await robot.drive_forward(50)
+    await robot.drive_forward(60)
     await motor.run_for_degrees(back_motor, 25, 700)
-    for i in range(6):
+    for i in range(8):
         await robot.simple_drive_backward(4)
         await robot.simple_drive_forward(4)
+    await motor.run_for_degrees(back_motor, -25,700 )
 
 
 async def flyswater2(robot,front_motor):
