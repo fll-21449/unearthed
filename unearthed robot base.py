@@ -110,12 +110,17 @@ async def millstone(robot, front_motor):
     await motor.run_for_degrees(front_motor, 150, 1000)
     
 async def gold_digger(robot, back_motor):
-    await robot.drive_forward(60)
+    motor.run(back_motor, -10)
+    await robot.drive_forward(57)
+    motor.stop(back_motor)
     await motor.run_for_degrees(back_motor, 25, 700)
     for i in range(8):
+        motor.run(back_motor, 10)
         await robot.simple_drive_backward(4)
         await robot.simple_drive_forward(4)
-    await motor.run_for_degrees(back_motor, -25,700 )
+    await motor.run_for_degrees(back_motor, -40, 700)
+    motor.run(back_motor, -10)
+    await robot.drive_backward(57)
 
 
 async def flyswater2(robot,front_motor):
