@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 1
+PROGRAM_NUMBER = 2
 
 async def main():
     robot = jones()
@@ -114,7 +114,7 @@ async def gold_digger(robot, back_motor):
     await robot.drive_forward(57)
     motor.stop(back_motor)
     await motor.run_for_degrees(back_motor, 25, 700)
-    for i in range(8):
+    for i in range(5):
         motor.run(back_motor, 10)
         await robot.simple_drive_backward(4)
         await robot.simple_drive_forward(4)
