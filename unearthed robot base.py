@@ -6,7 +6,7 @@ import motor
 
 SPEED = 70
 
-PROGRAM_NUMBER = 2
+PROGRAM_NUMBER = 3
 
 async def main():
     robot = jones()
@@ -74,7 +74,7 @@ async def the_hammer_thing (robot,front_motor,back_motor):
     await robot.turn_left(35)
     await robot.drive_forward(42.5)
     await robot.turn_left(55)
-    await robot.drive_forward(13.8)
+    await robot.drive_forward(12.8)
     await robot.turn_right(45)
     await robot.simple_drive_backward(14)
     await robot.drive_forward(12)
@@ -90,13 +90,15 @@ async def the_hammer_thing (robot,front_motor,back_motor):
     await motor.run_for_time(front_motor, 500, -950)
     await robot.drive_forward(5)
     await robot.turn_left(10)
-    await robot.drive_forward(17, speed=105)
-    await motor.run_for_degrees(back_motor, 105, 1100)
-    await motor.run_for_degrees(back_motor, -30, 1100)
-    await robot.turn_left(10)
-    await robot.turn_right(10)
-    await robot.drive_forward(33, speed=105)
-    await robot.turn_left(90)
+    await robot.drive_forward(53, speed=105)
+    await robot.turn_left(70)
+    # await robot.drive_forward(17, speed=105)
+    # await motor.run_for_degrees(back_motor, 105, 1100)
+    # await motor.run_for_degrees(back_motor, -30, 1100)
+    # await robot.turn_left(10)
+    # await robot.turn_right(10)
+    # await robot.drive_forward(33, speed=105)
+    # await robot.turn_left(90)
     await robot.simple_drive_forward(58, speed = 105)
 
 async def millstone(robot, front_motor):
@@ -113,12 +115,12 @@ async def gold_digger(robot, back_motor):
     motor.run(back_motor, -10)
     await robot.drive_forward(57)
     motor.stop(back_motor)
-    await motor.run_for_degrees(back_motor, 25, 700)
-    for i in range(5):
+    await motor.run_for_degrees(back_motor, 30, 700)
+    for i in range(6):
         motor.run(back_motor, 10)
         await robot.simple_drive_backward(4)
         await robot.simple_drive_forward(4)
-    await motor.run_for_degrees(back_motor, -40, 700)
+    await motor.run_for_degrees(back_motor, -60, 1000)
     motor.run(back_motor, -10)
     await robot.drive_backward(57)
 
